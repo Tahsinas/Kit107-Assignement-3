@@ -2,7 +2,7 @@
 /**
  *	Dimension ADT
  *
- *	@author << Student Names and IDs >>
+ *	@author << Tahsin Ahmed Siddiquee-236760 & Akash Indupa Weerasingha-120217 >>
  *	@version << Date of Completion >>
  *	
  *	This file holds the Dimension ADT which represents
