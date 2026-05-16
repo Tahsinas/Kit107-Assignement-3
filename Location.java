@@ -2,7 +2,7 @@
 /**
  *	Location ADT
  *
- *	@author << Student Names and IDs >>
+ *	@author << Tahsin Ahmed Siddiquee-236760 & Akash Indupa Weerasingha-120217 >>
  *	@version << Date of Completion >>
  *	
  *	This file holds the Location ADT which represents
@@ -40,7 +40,9 @@ public class Location implements LocationInterface, Cloneable
 	{
       	trace("Location: Constructor starts");
 
-//COMPLETE ME
+        row = r;
+		column = c;
+
 
       	trace("Location: Constructor ends");
 	}
@@ -61,7 +63,7 @@ public class Location implements LocationInterface, Cloneable
 	{
       	trace("setRow: setRow starts");
 
-//COMPLETE ME
+row = r;
 
       	trace("setRow: setRow ends");
 	}
@@ -82,7 +84,7 @@ public class Location implements LocationInterface, Cloneable
 	{
       	trace("setColumn: setColumn starts");
 
-//COMPLETE ME
+      column = c;
 
       	trace("setColumn: setColumn ends");
 	}
@@ -104,7 +106,7 @@ public class Location implements LocationInterface, Cloneable
       	trace("getRow: getRow starts and ends");
 
 //COMPLETE ME
-		return 0;	// CHANGE ME
+		return row;	// CHANGE ME
 	}
 	
 	
@@ -123,8 +125,8 @@ public class Location implements LocationInterface, Cloneable
 	{
       	trace("getColumn: getColumn starts and ends");
 
-//COMPLETE ME
-		return 0;	// CHANGE ME
+
+		return column;	
 	}
 	
 	
@@ -144,10 +146,10 @@ public class Location implements LocationInterface, Cloneable
 		
       	trace("clone: clone starts");
 
-//COMPLETE ME!
+         l = new Location(row, column);
 
       	trace("clone: clone ends");
-		return null;  // CHANGE ME
+		return l;  
 	}
 	
 	
