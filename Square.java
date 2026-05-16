@@ -80,7 +80,13 @@ public class Square implements SquareInterface, Cloneable
 	{
       	trace("Square: Constructor starts");
 
-//COMPLETE ME
+    loc = l;
+	colour = Color.WHITE;
+	wall = false;
+	visited = false;
+	start = false;
+	stop = false;
+	number = n;
 
 		trace("Square: Constructor ends");
 	}
@@ -147,11 +153,16 @@ public class Square implements SquareInterface, Cloneable
 		Square s;
 
 		trace("clone: clone starts");
+	s = new Square((Location) loc.clone(), start, stop, number);
+	s.colour = colour;
+	s.wall = wall;
+	s.visited = visited;
+	s.start = start;
+	s.stop = stop;
 
-// COMPLETE ME
 
       	trace("clone: clone ends");
-		return null;	// CHANGE ME
+		return s;	
 	}
 
 
@@ -305,8 +316,8 @@ public class Square implements SquareInterface, Cloneable
 	{
       	trace("isOccupied: isOccupied starts and ends");
 
-//COMPLETE ME
-		return false;	// CHANGE ME
+
+		return visited;
 	}
 
 
