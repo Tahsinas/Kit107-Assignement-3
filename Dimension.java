@@ -42,7 +42,9 @@ public class Dimension implements DimensionInterface
 	{
       	trace("Dimension: Constructor starts");
 
-//COMPLETE ME!
+        vert = v;
+		horiz = h;
+
 
       	trace("Dimension: Constructor ends");
 	}
@@ -63,7 +65,7 @@ public class Dimension implements DimensionInterface
 	{
       	trace("setVert: setVert starts");
 
-//COMPLETE ME!
+        vert = v;
 
       	trace("setVert: setVert ends");
 	}
@@ -84,7 +86,7 @@ public class Dimension implements DimensionInterface
 	{
       	trace("setHoriz: setHoriz starts");
 
-//COMPLETE ME!
+        horiz = h;
 
       	trace("setHoriz: setHoriz ends");
 	}
@@ -105,8 +107,7 @@ public class Dimension implements DimensionInterface
 	{
       	trace("getVert: getVert starts and ends");
 
-//COMPLETE ME
-		return 0;	// CHANGE ME
+		return vert;	
 	}
 	
 	
@@ -124,8 +125,8 @@ public class Dimension implements DimensionInterface
 	{
       	trace("getHoriz: getHoriz starts and ends");
 
-//COMPLETE ME
-		return 0;	// CHANGE ME
+
+		return horiz;	
 	}
 
 
