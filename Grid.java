@@ -51,7 +51,11 @@ public class Grid implements GridInterface, Cloneable
 	{
       	trace("Grid: Constructor starts");
 
-//COMPLETE ME		
+        dim = m;
+		goalNumber = g;
+		loc = null;
+		initialiseGrid();
+
 
       	trace("Grid: Constructor ends");
 	}
@@ -158,11 +162,30 @@ public class Grid implements GridInterface, Cloneable
 		
       	trace("clone: clone starts");
 
-//COMPLETE ME		
+
+		d = new Dimension(dim.getVert(), dim.getHoriz());
+		b = new Grid(d, goalNumber);
+
+		if (loc != null)
+		{
+			b.loc = (Location) loc.clone();
+		}
+		else
+		{
+			b.loc = null;
+		}
+
+		for (r=0; r<dim.getVert(); r++)
+		{
+			for (c=0; c<dim.getHoriz(); c++)
+			{
+				b.grid[r][c] = (Square) grid[r][c].clone();
+			}
+		}
 				
       	trace("clone: clone ends");
 
-		return null;	//CHANGE ME
+		return b;	
 	}
 	
 	
@@ -232,11 +255,12 @@ public class Grid implements GridInterface, Cloneable
 			// can't continue as provided location isn't in the maze
 			throw new IllegalGridException();
 		}
-//COMPLETE ME		
+        r = l.getRow();
+		c = l.getColumn();
 
 		trace("getSquare: getSquare ends");
 
-		return null;	//CHANGE ME
+		return grid[r-1][c-1];	
 	}
 		
 		
@@ -255,7 +279,7 @@ public class Grid implements GridInterface, Cloneable
 	{
 		trace("setDimension: setDimension starts");
 
-//COMPLETE ME		
+        dim = d;		
 
 		trace("setDimension: setDimension ends");
 	}
@@ -276,7 +300,7 @@ public class Grid implements GridInterface, Cloneable
 		trace("getDimension: getDimension starts and ends");
 
 //COMPLETE ME
-		return null;	//CHANGE ME
+		return dim;	
 	}
 
 
@@ -295,7 +319,7 @@ public class Grid implements GridInterface, Cloneable
 	{
 		trace("setLocation: setLocation starts");
 
-//COMPLETE ME		
+        loc = l;		
 
 		trace("setLocation: setLocation ends");
 	}
@@ -317,7 +341,7 @@ public class Grid implements GridInterface, Cloneable
 		trace("getLocation: getLocation starts and ends");
 
 //COMPLETE ME
-		return null;	//CHANGE ME
+		return loc;	
 	}
 	
 	
@@ -347,7 +371,11 @@ public class Grid implements GridInterface, Cloneable
 
 		trace("occupySquare: occupySquare starts");
 
-//COMPLETE ME
+       s = getSquare(l);
+		s.occupied(o);
+		setSquare(l,s);
+		loc = l;
+
 
 		trace("occupySquare: occupySquare ends");
 	}
@@ -377,7 +405,7 @@ public class Grid implements GridInterface, Cloneable
 
 //COMPLETE ME
 
-		return false;	//CHANGE ME
+		return getSquare(l).isOccupied();	
 	}
 	
 	
@@ -524,10 +552,25 @@ public class Grid implements GridInterface, Cloneable
 
 		trace("validMove: validMove starts");
 
-//COMPLETE ME
+        if (l == null)
+		{
+			trace("validMove: validMove ends");
+			return false;
+		}
+
+		r = l.getRow();
+		c = l.getColumn();
+
+		if (r >= 1 && r <= dim.getVert() && c >= 1 && c <= dim.getHoriz())
+		{
+			trace("validMove: validMove ends");
+			return true;
+		}
+		else
+		{
 		
       	trace("validMove: validMove ends");
-		return false;	//CHANGE ME
+		return false;	
 	}
 
 
@@ -548,9 +591,15 @@ public class Grid implements GridInterface, Cloneable
 	{
 		trace("gameOver: gameOver starts and ends");
 
-//COMPLETE ME
+
+		if (loc == null)
+		{
+			return false;
+		}
+		else
+		{
 		return false;	//CHANGE ME
-	}
+	    }
 
 	
 	/**
