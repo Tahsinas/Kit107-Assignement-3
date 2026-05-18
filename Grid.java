@@ -550,27 +550,27 @@ public class Grid implements GridInterface, Cloneable
 	{
 		int r,c;	// row and column values of given location
 
-		trace("validMove: validMove starts");
+	trace("validMove: validMove starts");
 
-        if (l == null)
-		{
-			trace("validMove: validMove ends");
-			return false;
-		}
+	if (l == null)
+	{
+		trace("validMove: validMove ends");
+		return false;
+	}
 
-		r = l.getRow();
-		c = l.getColumn();
+	r = l.getRow();
+	c = l.getColumn();
 
-		if (r >= 1 && r <= dim.getVert() && c >= 1 && c <= dim.getHoriz())
-		{
-			trace("validMove: validMove ends");
-			return true;
-		}
-		else
-		{
-		
-      	trace("validMove: validMove ends");
-		return false;	
+	if (r >= 1 && r <= dim.getVert() && c >= 1 && c <= dim.getHoriz())
+	{
+		trace("validMove: validMove ends");
+		return true;
+	}
+	else
+	{
+		trace("validMove: validMove ends");
+		return false;
+	}
 	}
 
 
@@ -589,16 +589,16 @@ public class Grid implements GridInterface, Cloneable
 	*/
 	public boolean gameOver()
 	{
-		trace("gameOver: gameOver starts and ends");
+			trace("gameOver: gameOver starts and ends");
 
-
-		if (loc == null)
-		{
-			return false;
-		}
-		else
-		{
-		return false;	//CHANGE ME
+	if (loc == null)
+	{
+		return false;
+	}
+	else
+	{
+		return getSquare(loc).isStopSquare();
+	}
 	    }
 
 	
