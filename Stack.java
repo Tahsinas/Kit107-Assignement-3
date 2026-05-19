@@ -80,9 +80,7 @@ public class Stack implements StackInterface
 	{
       	trace("isEmpty: isEmpty starts and ends");
 
-//COMPLETE ME
-
-		return false;	// CHANGE ME
+	    return tos == null;
 	}
 
 
@@ -99,20 +97,18 @@ public class Stack implements StackInterface
 	*/
 	public Object top() throws EmptyStackException
 	{
-      	trace("top: top starts");
+      trace("top: top starts");
 
-		if (isEmpty())
-		{
-	      	trace("top: empty stack");
-			throw new EmptyStackException();
-		}
-		else
-		{
-	      	trace("top: top ends");
-//COMPLETE ME
-
-			return null;	// CHANGE ME
-		}
+	if (isEmpty())
+	{
+		trace("top: empty stack");
+		throw new EmptyStackException();
+	}
+	else
+	{
+		trace("top: top ends");
+		return tos.getData();
+	}
 	}
 
 
@@ -129,20 +125,20 @@ public class Stack implements StackInterface
 	*/
 	public void pop() throws EmptyStackException
 	{
-      	trace("pop: pop starts");
+      trace("pop: pop starts");
 
-		if (isEmpty())
-		{
- 	     	trace("pop: empty stack");
-			throw new EmptyStackException();
-		}
-		else
-		{
-	      	trace("pop: adjusting top of stack");
-//COMPLETE ME
-		}
-		
-      	trace("pop: pop ends");
+	if (isEmpty())
+	{
+		trace("pop: empty stack");
+		throw new EmptyStackException();
+	}
+	else
+	{
+		trace("pop: adjusting top of stack");
+		tos = tos.getNext();
+	}
+	
+	trace("pop: pop ends");
 	}
 
 
@@ -164,11 +160,13 @@ public class Stack implements StackInterface
 	{
 		Node n;
 		
-      	trace("push: push starts");
+	trace("push: push starts");
       	
-//COMPLETE ME
+	n = new Node(o);
+	n.setNext(tos);
+	tos = n;
 
-      	trace("push: push ends");
+	trace("push: push ends");
 	}
 	
 	
