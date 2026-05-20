@@ -80,8 +80,8 @@ public class Queue implements QueueInterface
 	{
 	   	trace("isEmpty: isEmpty starts and ends");
 
-//COMPLETE ME
-		return false;	//CHANGE ME
+
+		return first == null;
 	}
 
 
