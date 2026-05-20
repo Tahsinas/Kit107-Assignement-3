@@ -165,8 +165,21 @@ public class Queue implements QueueInterface
 		Node c,n;	// traversal variable and new node
 		
 	   	trace("add: add starts");
+n = new Node(o);
 
-//COMPLETE ME
+if (isEmpty())
+{
+	first = n;
+}
+else
+{
+	c = first;
+	while (c.getNext() != null)
+	{
+		c = c.getNext();
+	}
+	c.setNext(n);
+}
 		
 	   	trace("add: add ends");
 	}
