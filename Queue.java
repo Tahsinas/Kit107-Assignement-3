@@ -98,18 +98,18 @@ public class Queue implements QueueInterface
 	*/
 	public Object front() throws EmptyQueueException
 	{
-	   	trace("front: front starts");
+	   trace("front: front starts");
 
-		if (isEmpty())
-		{
-	  	 	trace("front: queue is empty");
-			throw new EmptyQueueException();
-		}
-		else
-		{
-//COMPLETE ME
-return null;	//CHANGE ME
-		}
+	if (isEmpty())
+	{
+  	 	trace("front: queue is empty");
+		throw new EmptyQueueException();
+	}
+	else
+	{
+		trace("front: front ends");
+		return first.getData();
+	}
 
 	}
 
