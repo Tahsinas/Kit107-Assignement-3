@@ -137,7 +137,7 @@ public class Queue implements QueueInterface
 		else
 		{
 		   	trace("remove: updating first node");
-//COMPLETE ME
+			first = first.getNext();
 		}
 
 	   	trace("remove: remove ends");
