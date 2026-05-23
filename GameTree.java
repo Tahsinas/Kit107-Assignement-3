@@ -40,7 +40,7 @@ public class GameTree implements GameTreeInterface
 	{
 		trace("GameTree: constructor starts");
 		
-//COMPLETE ME
+        root = null;
 		
 		trace("GameTree: constructor ends");
 	}
@@ -112,8 +112,7 @@ public class GameTree implements GameTreeInterface
 
 		// non-empty tree
 		trace("getData: getData ends");
-//COMPLETE ME
-		return null;	//CHANGE ME
+     return root.getData();
 	}
 	
 	
@@ -180,9 +179,10 @@ public class GameTree implements GameTreeInterface
 			throw new EmptyGameTreeException();
 		}
   
-//COMPLETE ME
+        r = new GameTree();
+        r.root = root.getRight();
       	trace("getMiddle: getMiddle ends");		
-		return null;	//CHANGE ME
+		return r;	
 	}
 
 
