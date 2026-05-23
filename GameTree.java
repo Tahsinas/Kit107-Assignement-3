@@ -262,7 +262,7 @@ public class GameTree implements GameTreeInterface
 			throw new EmptyGameTreeException();
 		}
 
-//COMPLETE ME
+      root.setData(o);
       	trace("setData: setData ends");
 	}
 	
@@ -291,7 +291,7 @@ public class GameTree implements GameTreeInterface
 			throw new EmptyGameTreeException();
 		}
 		
-//COMPLETE ME
+        root.setLeft(t.root);
       	trace("setLeft: setLeft ends");
 	}
 	
@@ -320,7 +320,7 @@ public class GameTree implements GameTreeInterface
 			throw new EmptyGameTreeException();
 		}
 		
-//COMPLETE ME
+        root.setMiddle(t.root);
       	trace("setMiddle: setMiddle ends");
 	}
 	
@@ -349,7 +349,7 @@ public class GameTree implements GameTreeInterface
 			throw new EmptyGameTreeException();
 		}
 		
-//COMPLETE ME
+        root.setRight(t.root);
       	trace("setRight: setRight ends");
 	}
 
