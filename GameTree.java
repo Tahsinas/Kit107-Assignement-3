@@ -40,7 +40,7 @@ public class GameTree implements GameTreeInterface
 	{
 		trace("GameTree: constructor starts");
 		
-//COMPLETE ME
+        root = null;
 		
 		trace("GameTree: constructor ends");
 	}
@@ -112,8 +112,7 @@ public class GameTree implements GameTreeInterface
 
 		// non-empty tree
 		trace("getData: getData ends");
-//COMPLETE ME
-		return null;	//CHANGE ME
+     return root.getData();
 	}
 	
 	
@@ -180,9 +179,10 @@ public class GameTree implements GameTreeInterface
 			throw new EmptyGameTreeException();
 		}
   
-//COMPLETE ME
+        r = new GameTree();
+        r.root = root.getMiddle();
       	trace("getMiddle: getMiddle ends");		
-		return null;	//CHANGE ME
+		return r;	
 	}
 
 
@@ -214,7 +214,7 @@ public class GameTree implements GameTreeInterface
   
 //COMPLETE ME
       	trace("getRight: getRight ends");		
-		return null;	//CHANGE ME
+		return r;	
 	}
 
 
@@ -262,7 +262,7 @@ public class GameTree implements GameTreeInterface
 			throw new EmptyGameTreeException();
 		}
 
-//COMPLETE ME
+      root.setData(o);
       	trace("setData: setData ends");
 	}
 	
@@ -291,7 +291,7 @@ public class GameTree implements GameTreeInterface
 			throw new EmptyGameTreeException();
 		}
 		
-//COMPLETE ME
+        root.setLeft(t.root);
       	trace("setLeft: setLeft ends");
 	}
 	
@@ -320,7 +320,7 @@ public class GameTree implements GameTreeInterface
 			throw new EmptyGameTreeException();
 		}
 		
-//COMPLETE ME
+        root.setMiddle(t.root);
       	trace("setMiddle: setMiddle ends");
 	}
 	
@@ -349,7 +349,7 @@ public class GameTree implements GameTreeInterface
 			throw new EmptyGameTreeException();
 		}
 		
-//COMPLETE ME
+        root.setRight(t.root);
       	trace("setRight: setRight ends");
 	}
 
@@ -412,11 +412,55 @@ public class GameTree implements GameTreeInterface
 		final int HORIZONTAL[]={-1,0,+1,0};	// together these two arrays represent changes to the row and column for
 		final int VERTICAL[]={0,-1,0,+1};	// the four movements: [0] is left, [1] is up, [2] is right, [3] is down
 	
-		// local non-final variables
+		
+	Grid currentGrid;
+	Grid newGrid;
+	Location currentLocation;
+	Location newLocation;
+	GameTree newTree;
+	int i;
+	int childNumber;
+
 		
 		trace("generateLevelDF: generateLevelDF starts");
 		
-//COMPLETE ME
+currentGrid = (Grid)getData();
+	currentLocation = currentGrid.getLocation();
+	childNumber = 0;
+
+	for (i=0; i<4; i++)
+	{
+		newLocation = new Location(currentLocation.getRow()+VERTICAL[i],
+									currentLocation.getColumn()+HORIZONTAL[i]);
+
+		if (currentGrid.validMove(newLocation))
+		{
+			if ((! currentGrid.isWall(newLocation)) && (! currentGrid.squareOccupied(newLocation)))
+			{
+				newGrid = (Grid)currentGrid.clone();
+				newGrid.occupySquare(newLocation,true);
+
+				newTree = new GameTree(newGrid);
+
+				if (childNumber == 0)
+				{
+					setLeft(newTree);
+				}
+				else if (childNumber == 1)
+				{
+					setMiddle(newTree);
+				}
+				else if (childNumber == 2)
+				{
+					setRight(newTree);
+				}
+
+				s.push(newTree);
+				incCount();
+				childNumber++;
+			}
+		}
+	}
 	
 		trace("generateLevelDF: generateLevelDF ends");
 	}
@@ -454,11 +498,35 @@ public class GameTree implements GameTreeInterface
 			
 		trace("buildGameDF: buildGameDF starts");
 
-//COMPLETE ME
+if (isEmpty())
+	{
+		t = new GameTree();
+	}
+	else
+	{
+		t = this;
+		b = (Grid)t.getData();
+
+		while ((! b.gameOver()) && (! s.isEmpty()))
+		{
+			t.generateLevelDF(s);
+
+			t = (GameTree)s.top();
+			s.pop();
+
+			b = (Grid)t.getData();
+			b.showGrid(m);
+		}
+
+		if (! b.gameOver())
+		{
+			t = new GameTree();
+		}
+	}
 		
 		trace("buildGameDF: buildGameDF ends");
 
-		return null;	//CHANGE ME
+		return t;	
 	}
 	
 	
@@ -481,11 +549,54 @@ public class GameTree implements GameTreeInterface
 		final int HORIZONTAL[]={-1,0,+1,0};	// together these two arrays represent changes to the row and column for
 		final int VERTICAL[]={0,-1,0,+1};	// the four movements: [0] is left, [1] is up, [2] is right, [3] is down
 	
-		// local non-final variables
+    Grid currentGrid;
+	Grid newGrid;
+	Location currentLocation;
+	Location newLocation;
+	GameTree newTree;
+	int i;
+	int childNumber;
+
 		
 		trace("generateLevelBF: generateLevelBF starts");
 		
-//COMPLETE ME
+currentGrid = (Grid)getData();
+	currentLocation = currentGrid.getLocation();
+	childNumber = 0;
+
+	for (i=0; i<4; i++)
+	{
+		newLocation = new Location(currentLocation.getRow()+VERTICAL[i],
+									currentLocation.getColumn()+HORIZONTAL[i]);
+
+		if (currentGrid.validMove(newLocation))
+		{
+			if ((! currentGrid.isWall(newLocation)) && (! currentGrid.squareOccupied(newLocation)))
+			{
+				newGrid = (Grid)currentGrid.clone();
+				newGrid.occupySquare(newLocation,true);
+
+				newTree = new GameTree(newGrid);
+
+				if (childNumber == 0)
+				{
+					setLeft(newTree);
+				}
+				else if (childNumber == 1)
+				{
+					setMiddle(newTree);
+				}
+				else if (childNumber == 2)
+				{
+					setRight(newTree);
+				}
+
+				q.add(newTree);
+				incCount();
+				childNumber++;
+			}
+		}
+	}
 
 		trace("generateLevelBF: generateLevelBF ends");
 	}
@@ -523,11 +634,35 @@ public class GameTree implements GameTreeInterface
 					
 		trace("buildGameBF: buildGameBF starts");
 
-//COMPLETE ME
+        if (isEmpty())
+	{
+		t = new GameTree();
+	}
+	else
+	{
+		t = this;
+		b = (Grid)t.getData();
+
+		while ((! b.gameOver()) && (! q.isEmpty()))
+		{
+			t.generateLevelBF(q);
+
+			t = (GameTree)q.front();
+			q.remove();
+
+			b = (Grid)t.getData();
+			b.showGrid(m);
+		}
+
+		if (! b.gameOver())
+		{
+			t = new GameTree();
+		}
+	}
 		
 		trace("buildGameBF: buildGameBF ends");
 
-		return null;	//CHANGE ME
+		return t;	
 	}				
 
 
