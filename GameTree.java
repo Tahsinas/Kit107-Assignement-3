@@ -200,21 +200,21 @@ public class GameTree implements GameTreeInterface
 	*/
 	public GameTree getRight() throws EmptyGameTreeException
 	{
-		GameTree r;	// result
+	GameTree r;	// result
 		
-      	trace("getRight: getRight starts");
+	trace("getRight: getRight starts");
 		
-		if (isEmpty())
-		{
-			// no right branch...
-    	  	trace("getRight: tree is empty...");
-
-			throw new EmptyGameTreeException();
-		}
+	if (isEmpty())
+	{
+		trace("getRight: tree is empty...");
+		throw new EmptyGameTreeException();
+	}
   
-//COMPLETE ME
-      	trace("getRight: getRight ends");		
-		return r;	
+	r = new GameTree();
+	r.root = root.getRight();
+
+	trace("getRight: getRight ends");		
+	return r;
 	}
 
 
@@ -494,11 +494,11 @@ currentGrid = (Grid)getData();
 	public GameTree buildGameDF(MazeSolver m, Stack s)
 	{
 		GameTree t;	// game tree containing next candidate move
-		Grid b;		// grid from current tree
+	Grid b;		// grid from current tree
 			
-		trace("buildGameDF: buildGameDF starts");
+	trace("buildGameDF: buildGameDF starts");
 
-if (isEmpty())
+	if (isEmpty())
 	{
 		t = new GameTree();
 	}
@@ -507,26 +507,27 @@ if (isEmpty())
 		t = this;
 		b = (Grid)t.getData();
 
-		while ((! b.gameOver()) && (! s.isEmpty()))
+		while (! b.gameOver())
 		{
 			t.generateLevelDF(s);
+
+			if (s.isEmpty())
+			{
+				t = new GameTree();
+				break;
+			}
 
 			t = (GameTree)s.top();
 			s.pop();
 
 			b = (Grid)t.getData();
-			b.showGrid(m);
-		}
-
-		if (! b.gameOver())
-		{
-			t = new GameTree();
+			m.repaint();
 		}
 	}
 		
-		trace("buildGameDF: buildGameDF ends");
+	trace("buildGameDF: buildGameDF ends");
 
-		return t;	
+	return t;
 	}
 	
 	
@@ -634,7 +635,7 @@ currentGrid = (Grid)getData();
 					
 		trace("buildGameBF: buildGameBF starts");
 
-        if (isEmpty())
+       if (isEmpty())
 	{
 		t = new GameTree();
 	}
@@ -643,20 +644,21 @@ currentGrid = (Grid)getData();
 		t = this;
 		b = (Grid)t.getData();
 
-		while ((! b.gameOver()) && (! q.isEmpty()))
+		while (! b.gameOver())
 		{
 			t.generateLevelBF(q);
+
+			if (q.isEmpty())
+			{
+				t = new GameTree();
+				break;
+			}
 
 			t = (GameTree)q.front();
 			q.remove();
 
 			b = (Grid)t.getData();
-			b.showGrid(m);
-		}
-
-		if (! b.gameOver())
-		{
-			t = new GameTree();
+			m.repaint();
 		}
 	}
 		
