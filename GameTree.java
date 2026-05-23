@@ -180,7 +180,7 @@ public class GameTree implements GameTreeInterface
 		}
   
         r = new GameTree();
-        r.root = root.getRight();
+        r.root = root.getMiddle();
       	trace("getMiddle: getMiddle ends");		
 		return r;	
 	}
@@ -214,7 +214,7 @@ public class GameTree implements GameTreeInterface
   
 //COMPLETE ME
       	trace("getRight: getRight ends");		
-		return null;	//CHANGE ME
+		return r;	
 	}
 
 
