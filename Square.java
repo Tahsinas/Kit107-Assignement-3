@@ -23,7 +23,7 @@ import java.awt.*;
 public class Square implements SquareInterface, Cloneable
 {
 	// finals
-	protected final boolean TRACING=true;				// do we want to see trace output?
+	protected final boolean TRACING=false;				// do we want to see trace output?
 
 	// non-finals
 	protected Location loc;		// the location of the current square within the maze

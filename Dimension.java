@@ -17,7 +17,7 @@
 public class Dimension implements DimensionInterface
 {
 	// finals
-	protected final boolean TRACING=true;				// do we want to see trace output?
+	protected final boolean TRACING=false;				// do we want to see trace output?
 
 	// non-finals
 	protected int vert;		// the height of a maze (number of rows)

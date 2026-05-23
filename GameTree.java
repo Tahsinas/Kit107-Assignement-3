@@ -19,7 +19,7 @@
 public class GameTree implements GameTreeInterface
 {
 	// finals
-	protected final boolean TRACING=true;				// do we want to see trace output?
+	protected final boolean TRACING=false;				// do we want to see trace output?
 
 	// non-finals
 	// static non-finals
